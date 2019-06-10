@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorImpl" />
+    <bean id="game" class="academy.learnprogramming.GameImpl">
+        <!--name is the field in the GameImpl class and ref is the bean reference in that case numberGenerator-->
+        <property name="numberGenerator" ref="numberGenerator"/>
+    </bean>
+
+
+
+</beans>
