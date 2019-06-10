@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 
 public class GameImpl implements Game {
 
@@ -21,13 +24,8 @@ public class GameImpl implements Game {
     private int remainingGuesses;
     private boolean validNumberRange = true;
 
-
-
-
-    public void showNumber(){
-        log.debug("GameImpl number is {} ", this.numberGenerator.getMaxNumber());
-    }
-
+    // init method
+    @PostConstruct
     @Override
     public void reset() {
         smallest=0;
@@ -38,6 +36,18 @@ public class GameImpl implements Game {
         log.debug("the number is {} ", this.number);
 
     }
+
+    @PreDestroy
+    public void preDestroy(){
+        log.info("in Game preDestroy");
+    }
+
+
+    public void showNumber(){
+        log.debug("GameImpl number is {} ", this.numberGenerator.getMaxNumber());
+    }
+
+
 
     public void setNumberGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
